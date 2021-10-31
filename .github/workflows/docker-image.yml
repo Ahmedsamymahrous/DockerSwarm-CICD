@@ -36,16 +36,25 @@ jobs:
         ssh_public_key: ${{ secrets.MASTER_SSH_PUBLIC_KEY }}
         args: stack deploy --compose-file docker-compose.yml flask-app
 
-    - name: Deploy to Docker swarm
-      uses: wshihadeh/docker-deployment-action@v1
-      with:
-        remote_docker_host: ubuntu@3.136.233.198
-        ssh_private_key: ${{ secrets.MASTER_SSH_PRIVATE_KEY }}
-        ssh_public_key: ${{ secrets.MASTER_SSH_PUBLIC_KEY }}
-        deployment_mode: docker-swarm
-        copy_stack_file: true
-        # deploy_path: /root/my-deployment
-        stack_file_name: docker-compose.yml
-        # keep_files: 5
-        args: flask-app
+    # - name: Deploy to Docker swarm
+    #   uses: wshihadeh/docker-deployment-action@v1
+    #   with:
+    #     remote_docker_host: ubuntu@3.136.233.198
+    #     ssh_private_key: ${{ secrets.MASTER_SSH_PRIVATE_KEY }}
+    #     ssh_public_key: ${{ secrets.MASTER_SSH_PUBLIC_KEY }}
+    #     deployment_mode: docker-swarm
+    #     copy_stack_file: true
+    #     # deploy_path: /root/my-deployment
+    #     stack_file_name: docker-compose.yml
+    #     # keep_files: 5
+    #     args: flask-app
+    
 
+    - name: Deploy Stack
+      uses: appleboy/ssh-action@master
+      with:
+        host: 3.136.233.198
+        username: ubuntu
+        key: ${{ secrets.MASTER_SSH_PRIVATE_KEY }}
+        # port: ${{ secrets.GL_SSH_PORT }}
+        script: docker stack deploy -c docker-compose.yml flask-app
