@@ -34,5 +34,5 @@ jobs:
         remote_host: 3.136.233.198
         ssh_private_key: ${{ secrets.MASTER_SSH_PRIVATE_KEY }}
         ssh_public_key: ${{ secrets.MASTER_SSH_PUBLIC_KEY }}
-        args: stack deploy --compose-file docker-compose.yaml flask-app
+        args: stack deploy --compose-file docker-compose.yml flask-app
 

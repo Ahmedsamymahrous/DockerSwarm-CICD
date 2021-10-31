@@ -1,9 +1,9 @@
 version: "3.9"
 
 services:
-  
+
   web:
-    image: ahmedsamymahrous/flask-app
+    image: ahmedsamymahrous/flask-app:latest
     build: .
     ports:
       - "8000:8000"
