@@ -36,6 +36,7 @@ jobs:
     #     key: ${{ secrets.MASTER_SSH_PRIVATE_KEY }}
     #     script: docker stack deploy -c docker-compose.yml flask-app
 
+    
     - name: send custom message with args
       uses: appleboy/telegram-action@master
       with:
