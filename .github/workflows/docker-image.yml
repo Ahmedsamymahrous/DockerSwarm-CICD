@@ -28,13 +28,13 @@ jobs:
     - name: Push the Docker image to Dockerhub
       run: docker push ahmedsamymahrous/flask-app:latest
 
-    - name: Deploy Stack
-      uses: appleboy/ssh-action@master
-      with:
-        host: 3.136.233.198
-        username: ubuntu
-        key: ${{ secrets.MASTER_SSH_PRIVATE_KEY }}
-        script: docker stack deploy -c docker-compose.yml flask-app
+    # - name: Deploy Stack
+    #   uses: appleboy/ssh-action@master
+    #   with:
+    #     host: 3.136.233.198
+    #     username: ubuntu
+    #     key: ${{ secrets.MASTER_SSH_PRIVATE_KEY }}
+    #     script: docker stack deploy -c docker-compose.yml flask-app
 
 
     - name: send custom message with args
